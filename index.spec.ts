@@ -22,9 +22,7 @@ describe('BackgroundCheckService', function() {
       const mockReportEvent = mock<TheEvent>();
       when(mockReportEvent.candidateId).thenReturn('123456');
       const mockUser = mock<any>();
-      when(mockUser.id).thenReturn(0);
-      const userInstance = instance(mockUser);
-      when(mockUserService.findByCandidateId('123456')).thenResolve(userInstance);
+      when(mockUserService.findByCandidateId(anything())).thenResolve(mockUser);
 
       const actual = await service.processBackgroundCheckReportComplete(
           instance(mockReportEvent),
